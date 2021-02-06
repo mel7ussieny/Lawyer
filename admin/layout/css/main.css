@@ -1,0 +1,393 @@
+/*
+Import Fonts
+    - Almarai-Regular => arabicFont
+*/
+@font-face {
+  font-family: arabicFont;
+  src: url(../fonts/Almarai-Regular.ttf);
+}
+@font-face {
+  font-family: italicfont;
+  src: url(../fonts/Rakkas-Regular.ttf);
+}
+
+/* Main Style */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input:focus {
+  box-shadow: none !important;
+}
+.arabicFont {
+  font-family: arabicFont;
+}
+a {
+  text-decoration: none !important;
+}
+/* Menubar */
+.menubar {
+  display: flex;
+  justify-content: flex-end;
+}
+.menu {
+  position: fixed;
+  background-color: #292928;
+  height: 100%;
+  padding: 10px 0px;
+  color: #fff;
+}
+.menu i {
+  color: rgb(212 212 212);
+  font-size: 20px;
+  margin-left: 15px;
+  width: 22px;
+  text-align: center;
+}
+.userInfosImg img {
+  width: 250px;
+}
+.userInfosImg {
+  border-radius: 100%;
+  overflow: hidden;
+}
+.menu ul {
+  padding: 0px;
+}
+.menu ul li {
+  list-style: none;
+  margin-bottom: 1px;
+  padding: 15px 15px;
+}
+.menu ul li a {
+  text-decoration: none;
+  color: rgb(212 212 212);
+}
+
+.dashboard-icon {
+  cursor: pointer;
+}
+.menu-item {
+  display: none;
+}
+/* Background Pages */
+div.login-bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: #f5f5f5;
+}
+div.dashboard-bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: #f2f7fd;
+}
+/* Login Page */
+.header-img {
+  display: flex;
+  justify-content: center;
+}
+.header-img img {
+  max-width: 200px;
+}
+.header-login h3 {
+  font-family: italicfont;
+  text-align: center;
+  font-size: 50px;
+  color: #404040;
+}
+.form-login {
+  display: flex;
+  justify-content: center;
+}
+.form-login form {
+  width: 400px;
+}
+.form-login form > div {
+  margin-bottom: 10px;
+  position: relative;
+}
+.form-login form > div input {
+  padding-left: 36px;
+  height: 42px;
+}
+
+.form-login form > div label {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.form-login form > div label i {
+  font-size: 20px;
+  color: #535353;
+}
+.alert-login {
+  font-family: arabicFont;
+  width: 60%;
+  text-align: center;
+  margin: 20px auto;
+}
+
+/*Members Page*/
+.add-member {
+  background-color: #f4429a;
+  padding: 40px;
+  border-radius: 5px;
+  margin-top: 50px;
+}
+.add-member i {
+  font-size: 40px;
+  color: #fff;
+}
+.add-member span {
+  color: #fff;
+  font-size: 30px;
+}
+.input-form {
+  margin-top: 50px;
+}
+.input-form input {
+  margin-bottom: 10px;
+  height: 44px;
+}
+
+/*Contract Page*/
+.add-contract {
+  background-color: #2bc577;
+  padding: 40px;
+  border-radius: 5px;
+  margin-top: 50px;
+}
+.add-contract i {
+  font-size: 40px;
+  color: #fff;
+}
+.add-contract span {
+  color: #fff;
+  font-size: 30px;
+}
+.multiphone-data {
+  position: relative;
+}
+.multiphone-data i {
+  position: absolute;
+  left: 10px;
+  font-size: 25px;
+  top: 11px;
+  color: #a7a7a7;
+  cursor: pointer;
+}
+
+.multifile-data {
+  position: relative;
+}
+.multifile-data i {
+  position: absolute;
+  left: 10px;
+  font-size: 25px;
+  top: 11px;
+  color: #a7a7a7;
+  cursor: pointer;
+}
+
+/* Default page In Client Page*/
+.search-advanced {
+  margin-top: 100px;
+}
+.search-advanced h3 {
+  margin-bottom: 20px;
+}
+.search-advanced input {
+  height: 44px;
+}
+
+/* Appearence clients */
+.clients {
+  margin-top: 20px;
+  position: relative;
+}
+.client {
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+.client > i {
+  position: absolute;
+  z-index: 2;
+  left: 8px;
+  font-size: 20px;
+  top: 10px;
+  color: #f55858;
+  cursor: pointer;
+}
+.clients .client {
+  position: relative;
+  background-color: #eee;
+  padding: 15px;
+}
+.content > ul {
+  list-style: none;
+  margin-top: 10px;
+  padding-right: 20px;
+}
+.content > ul > li {
+  margin-bottom: 10px;
+}
+.content > ul > li:nth-child(odd) {
+  background-color: rgb(199, 199, 199);
+}
+.content ul > li {
+  padding: 8px;
+}
+.client .content {
+  display: none;
+}
+
+/* View Page */
+.personal {
+  margin-top: 40px;
+}
+.infos .personal ul {
+  list-style: none;
+  padding-right: 10px;
+}
+.infos .personal > ul > li {
+  padding: 15px;
+}
+.infos .personal ul li:nth-child(odd) {
+  background-color: #eee;
+}
+.infos .personal > h3 {
+  margin: 40px 0px;
+}
+ul.phones > li {
+  margin-top: 8px;
+}
+.infos .personal i {
+  margin-left: 6px;
+  font-size: 20px;
+  color: #676767;
+}
+.attachments {
+  margin-top: 40px;
+}
+.infos .personal > h3 {
+  margin: 40px 0px;
+}
+.attachments .files {
+  padding: 20px;
+  background-color: #eee;
+}
+/* Modal Picture */
+/* Style the Image Used to Trigger the Modal */
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {
+  opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content,
+#caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+  .modal-content {
+    width: 100%;
+  }
+}
+.img-content {
+  display: inline;
+  margin-left: 8px;
+}
+/*Sart disputes in ViewPage */
+.disputes {
+  margin-top: 40px;
+}
+.disputes h3 {
+  margin: 40px 0px;
+}
+
+/*Sart Payments in ViewPage */
+.payments {
+  margin-top: 40px;
+}
+.payments h3 {
+  margin: 40px 0px;
+}
