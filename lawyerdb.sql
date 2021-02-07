@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2021 at 10:24 PM
+-- Generation Time: Feb 07, 2021 at 05:47 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.1.12
 
@@ -47,6 +47,36 @@ INSERT INTO `clients` (`client_id`, `name`, `contract`, `address`, `date`) VALUE
 (21, 'احمد حسين', 6985744, '15 سيجر ش البابلي', '2021-02-06'),
 (22, 'احمد علي محسن', 58664541, '15 سيجر منسجي', '2021-02-06'),
 (23, 'احمد محمد حسيني', 2147483647, '15 سيجر ش جامع البابلي', '2021-02-06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `disputes`
+--
+
+CREATE TABLE `disputes` (
+  `dispute_id` int(11) NOT NULL,
+  `ref_number` int(11) NOT NULL,
+  `court` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `district` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `dclient_id` int(11) NOT NULL,
+  `client_type` int(1) NOT NULL,
+  `en_name` varchar(255) NOT NULL,
+  `en_address` varchar(255) NOT NULL,
+  `en_lawyer` varchar(255) NOT NULL,
+  `en_type` int(1) NOT NULL,
+  `price` int(11) NOT NULL,
+  `dis_status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `disputes`
+--
+
+INSERT INTO `disputes` (`dispute_id`, `ref_number`, `court`, `title`, `district`, `date`, `dclient_id`, `client_type`, `en_name`, `en_address`, `en_lawyer`, `en_type`, `price`, `dis_status`) VALUES
+(1, 56985745, 'طنطا', 'ترخيص مباني', 'سيجر', '2021-02-18', 21, 2, 'احمد علي حسن', 'ش الجلاء', 'علي حسن', 1, 30000, 1);
 
 -- --------------------------------------------------------
 
@@ -137,6 +167,13 @@ ALTER TABLE `clients`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `disputes`
+--
+ALTER TABLE `disputes`
+  ADD PRIMARY KEY (`dispute_id`),
+  ADD KEY `dispute` (`dclient_id`);
+
+--
 -- Indexes for table `identity`
 --
 ALTER TABLE `identity`
@@ -168,6 +205,12 @@ ALTER TABLE `clients`
   MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
+-- AUTO_INCREMENT for table `disputes`
+--
+ALTER TABLE `disputes`
+  MODIFY `dispute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `identity`
 --
 ALTER TABLE `identity`
@@ -188,6 +231,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `disputes`
+--
+ALTER TABLE `disputes`
+  ADD CONSTRAINT `dispute` FOREIGN KEY (`dclient_id`) REFERENCES `clients` (`client_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `identity`
