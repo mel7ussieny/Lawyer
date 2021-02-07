@@ -31,6 +31,19 @@ input:focus {
 a {
   text-decoration: none !important;
 }
+
+/* Selectbox and Tags Item */
+input[type="select-one"],
+input#input-tags-selectized {
+  height: 20px !important;
+}
+.selectize-input {
+  height: 30px !important;
+}
+.selectize-control {
+  text-align: right;
+}
+
 /* Menubar */
 .menubar {
   display: flex;
@@ -88,6 +101,8 @@ div.dashboard-bg {
   height: 100%;
   position: fixed;
   background-color: #f2f7fd;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 /* Login Page */
 .header-img {
@@ -116,7 +131,7 @@ div.dashboard-bg {
 }
 .form-login form > div input {
   padding-left: 36px;
-  height: 42px;
+  /* height: 42px; */
 }
 
 .form-login form > div label {
@@ -390,4 +405,20 @@ ul.phones > li {
 }
 .payments h3 {
   margin: 40px 0px;
+}
+
+/* Dispute Page */
+.add-dispute {
+  background-color: #ab5af5;
+  padding: 40px;
+  border-radius: 5px;
+  margin-top: 50px;
+}
+.add-dispute i {
+  font-size: 40px;
+  color: #fff;
+}
+.add-dispute span {
+  color: #fff;
+  font-size: 30px;
 }

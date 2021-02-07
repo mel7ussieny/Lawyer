@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     $('[placeholder]').focus(function(){
         $(this).attr('data-holder',$(this).attr('placeholder'));
         $(this).removeAttr("placeholder");
@@ -38,5 +39,26 @@ $('.myImg').on("click",function(){
 $(".modal span").on("click",function(){
     $(this).parent().css("display","none");
 })
+
+
+
+    // SELECT BOX
+    $('select').selectize({
+        create: true,
+    });
+
+    // Tags for input
+    $('#input-tags').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        persist: false,
+        create: function(input) {
+            return {
+                value: input,
+                text: input
+            }
+        }
+    });
+
 
 })
