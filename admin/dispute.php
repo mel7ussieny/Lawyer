@@ -25,14 +25,25 @@
             </div>
         </div>
         <div class="container">
-            <div class='clients-info'>
-                <div class="search-advanced">
-                    <h3 class="arabicFont display-4 text-center">الــتوكيلات</h3>
-                    <input type="text" style="direction:rtl" placeholder="الإسم" class="search-bar form-control arabicFont">
+        <div class="disputes-trace">
+            <div class="search-advanced">
+                <h3 class="arabicFont display-4 text-center">بحث عن قضية</h3>
+                <div class="advanced arabicFont">
+                    <i class="fas fa-caret-left"></i>
+                    <div class="search-types">
+                        <ul>
+                            <li><span>العنوان</span> <input custom-display="بحث بالإسم" name="search" value="title" type="radio" checked></li>
+                            <li><span>التاريخ</span><input custom-display="بحث بالتاريخ" name="search" value="date" type="radio"></li>
+                            <li><span>رقم الدعوي</span><input custom-display="بحث برقم الدعوي" name="search" value="ref_number" type="radio"></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="clients" id="clients" dir="rtl">
-
-                </div>
+                <input type="hidden" class="searchwith" name="with" value="title">
+                <input type="text" style="direction:rtl" placeholder="بحث بالعنوان" class="search-dispute form-control arabicFont">
+                <div class="disputes-view" id="disputes" dir="rtl">
+                    
+                </div>    
+            </div>                            
             </div>
         </div>
 <?php
@@ -59,7 +70,7 @@
                 <option value="1">مدعي</option>
                 <option value="2">مدعي عليه</option>
                 <option value="3">مجني</option>
-                <option value="4">مدني عليه</option>
+                <option value="4">مجني عليه</option>
                 <option value="5">مستأنف</option>
                 <option value="6">متسأنف ضده</option>
               </select>
@@ -75,7 +86,7 @@
                 <option value="1">مدعي</option>
                 <option value="2">مدعي عليه</option>
                 <option value="3">مجني</option>
-                <option value="4">مدني عليه</option>
+                <option value="4">مجني عليه</option>
                 <option value="5">مستأنف</option>
                 <option value="6">متسأنف ضده</option>
               </select>
@@ -234,12 +245,9 @@
         </div>
     </div>
 <?php
-
+    include $tmpl . "footer.php";
     }else{
         header("location: login.php");
-        include 'init.php';
-
     }
-    include $tmpl . "footer.php";
 
 ?>

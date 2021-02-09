@@ -61,4 +61,48 @@ $(".modal span").on("click",function(){
     });
 
 
+    // ViewPage show dispute details
+    $('.dispute-header .title').on("click",function(){
+        $(this).parent().parent().children(".content").slideToggle();
+    })
+
+
+    // advanced search
+        // Toggle The Slider
+    $(".search-advanced .advanced i").on("click",function(){
+        $(".search-types").toggleClass("active");
+        if(!$(".search-types").hasClass("active")){
+            $(".search-types").slideUp();
+            $(this).removeClass();
+            $(this).addClass('fas fa-caret-left');
+        }else{
+            $(".search-types").slideDown();
+            $(this).removeClass();
+            $(this).addClass('fas fa-caret-down');
+
+        }
+    })
+
+   $('.search-types ul li input[type="radio"]').on("click",function(){
+        $('.search-dispute').attr("placeholder",$(this).attr("custom-display"));
+        $('.search-dispute').val("");
+        $('.searchwith').attr("value",$(this).attr("value"));
+        
+    })
+
+
+
+    // Data Picker
+    $('#date-picker-exchange').pickadate({
+        monthsFull: ['يناير', 'فبراير', '	مارس', '	أبريل/إبريل', 'أيار', 'حزيران', 'تموز', '	آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'],
+        monthsShort: ['يناير', 'فبراير', '	مارس', '	أبريل/إبريل', 'أيار', 'حزيران', 'تموز', '	آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'],
+        weekdaysFull: ['الأحد' ,'السبت' ,'الجمعه', 'الخميس', 'الأربعاء', 'الثلاثاء', 'الأثنين'],
+        weekdaysShort: ['الأحد' ,'السبت' ,'الجمعه', 'الخميس', 'الأربعاء', 'الثلاثاء', 'الأثنين'],
+        today: 'اليوم',
+        clear: 'اختيار واضح',
+        close: 'إلغاء',
+        formatSubmit: 'yyyy/mm/dd',
+        onStart: "close"
+    });
+
 })

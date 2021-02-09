@@ -22,7 +22,8 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   box-shadow: none !important;
 }
 .arabicFont {
@@ -300,6 +301,29 @@ ul.phones > li {
   padding: 20px;
   background-color: #eee;
 }
+.dispute-header{
+  position: relative;
+  background-color: #454545;
+  padding: 10px;
+  margin-bottom: 10px;
+
+}
+.dispute .show-dispute{
+  position: absolute;
+  color: #FFF;
+  left: 10px;
+  font-size: 26px;
+  bottom: 10px;
+}
+.dispute .content {
+  display: none;
+}
+.dispute .title{
+  /* display: block; */
+  margin-bottom: 5px;
+  cursor: pointer;
+  color: #FFF;
+}
 /* Modal Picture */
 /* Style the Image Used to Trigger the Modal */
 #myImg {
@@ -421,4 +445,96 @@ ul.phones > li {
 .add-dispute span {
   color: #fff;
   font-size: 30px;
+}
+
+/* Trace dispute Page */
+.advanced{
+  direction: rtl;
+}
+.search-types ul{
+  list-style:none;
+  padding: 0px;
+}
+.search-types ul li {
+  display:flex;
+  align-items: center;
+}
+.search-types ul li span{
+  width: 100px !important;
+}
+.search-advanced .advanced i{
+  font-size: 20px;
+  color: #5a5a5a;
+}
+.search-advanced .search-types{
+  display: none;
+}
+.disputes-view {
+  margin-top: 20px;
+  position: relative;
+}
+.dispute-view {
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+.dispute-view > i {
+  position: absolute;
+  z-index: 2;
+  left: 8px;
+  font-size: 20px;
+  top: 10px;
+  color: #f55858;
+  cursor: pointer;
+}
+.disputes-view .dispute-view {
+  position: relative;
+  background-color: #eee;
+  padding: 15px;
+}
+.disputes-view .content{
+  display: none;
+}
+
+/* View Dispute */
+.dispute-info ul{
+  list-style: none;
+  padding: 0px;
+}
+.dispute-info h3{
+  margin:30px 0px;
+}
+.dispute-info ul li{
+  padding: 10px;
+  background-color: #e6eaf0;
+  margin-bottom: 15px;
+}
+.dispute-info ul li span.dis-info{
+  float: right;
+  width: 100px;
+  font-size: 14px;
+}
+.dispute-trace h3{
+  margin:30px 0px;
+}
+.dispute-news h3{
+  margin:30px 0px;
+
+}
+.add-to-dispute form > input,
+.add-to-dispute form > textarea{
+  margin-bottom: 10px;
+}
+.add-to-dispute form > textarea{
+  height: 100px;
+  resize: none;
+}
+.add-to-dispute form > input{
+  height: 50px;
+}
+.multifile-data{
+  margin-bottom: 10px;
+}
+.multifile-data input{
+  height: 44px;
 }
