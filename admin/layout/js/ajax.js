@@ -16,7 +16,7 @@ $(document).ready(function(){
                         var html = `<div class="client arabicFont">
                         <i class="fas fa-bars"></i>
                         <span class="name">${element[3]}</span>
-                        <div class="content">
+                    <div class="content">
                         <ul>'
                         <li>العنوان : ${element[1]}</li>
                         <li>رقم التوكيل : ${element[2]}</li>
@@ -63,7 +63,6 @@ $(document).ready(function(){
                             <li>الخصم : ${element[5]}</li>
                             <li>محامي الخصم : ${element[6]}</li>
                             <li>تاريخ : ${element[7]}</li>
-
                         </ul>
                             <a href="trace-dispute.php?action=view&dispute_id=${element[0]}">إظهار الملف كامل</a>
                         </div>
@@ -80,4 +79,48 @@ $(document).ready(function(){
         }
     })
 
+    $('.get-profit').on("click",function(){
+        $(".statistics table tbody tr").remove();
+        $(".statistics .total-profit span").remove();
+        if($('input[name="prefix__date-start__suffix"]').val().length > 0 && $('input[name="prefix__date-start__suffix"]').val().length > 0){
+            let d_start = $("input[name='prefix__date-start__suffix']").val();
+            let d_end   = $("input[name='prefix__date-end__suffix']").val();
+            let request = new XMLHttpRequest();
+            request.open("GET","search.php?required=get-profit&d-start="+d_start+"&d-end="+d_end);
+            request.setRequestHeader("content-type","application/json; charset=utf-8");
+            request.send();
+            request.onload = function(){
+                let arr = JSON.parse(request.responseText);
+                if(arr[0]["type"] != null){
+                    arr.forEach(element => {
+
+                        type = (element["type"] == 1 ) ? "أتعاب" : "مصروف";
+                        let ref = (element["dispute_id"] != null) ? `trace-dispute.php?action=view&dispute_id=${element["dispute_id"]}` : "#";
+                        let title = (element["title"] == null) ? "" : element["title"];
+                        
+                        let html = `
+                            <tr>
+                                <td>${element["date"]}</td>
+                                <td>${type}</td>
+                                <td>${element["amount"]}</td>
+                                <td>${element["pay_for"]}</td>
+                                <td><a href="${ref}">${title}</a></td>
+                            </tr>
+                        `;
+                        $(".statistics table tbody").append(html);
+                    })
+                    let profit = `<span class='profit-amount'>${arr[0]["profit"]}ج</span>`;
+                    $(".statistics .total-profit").append(profit);
+                    // Style the profit
+                    if(arr[0]["profit"] > 0){
+                        $(".profit-amount").css("color","#00cd65");
+                    }else if(arr[0]["profit"] == 0){
+                        $(".profit-amount").css("color","#808080");
+                    }else{
+                        $(".profit-amount").css("color","#d9001e");
+                    }
+                }
+            }
+        }
+    })
 })

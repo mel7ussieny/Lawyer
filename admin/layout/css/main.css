@@ -23,7 +23,8 @@ input[type="number"] {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+button:focus {
   box-shadow: none !important;
 }
 .arabicFont {
@@ -105,6 +106,22 @@ div.dashboard-bg {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.notifications{
+  padding: 10px;
+}
+.noti-header{
+  padding: 15px;
+  display: flex;
+  align-items:center;
+}
+.noti-header i{
+  margin-left: 10px;
+  font-size: 25px;
+}
+.notifications .noti-header{
+  background-color: #292928;
+  color: #FFF;
+}
 /* Login Page */
 .header-img {
   display: flex;
@@ -151,6 +168,41 @@ div.dashboard-bg {
   margin: 20px auto;
 }
 
+/* Dashboard */
+.shortcuts{
+  margin-top: 50px;
+}
+.shortcuts .dash-content{
+  height: 200px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  padding: 40px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #414141;
+}
+.dash-content .include{
+  text-align:center;
+}
+.dash-content .include span{
+  font-size:40px;
+}
+.dash-content i{
+  font-size: 60px;
+}
+.content-disputes{
+  background-color: #ff4646;
+}
+.content-clients{
+  background-color: #ffb396;
+}
+.content-updates{
+  background-color: #ff8585;
+}
+.include a span{
+  color: #414141;
+}
 /*Members Page*/
 .add-member {
   background-color: #f4429a;
@@ -267,6 +319,10 @@ div.dashboard-bg {
 }
 
 /* View Page */
+.user-control{
+  margin-top: 10px;
+  text-align: right;
+}
 .personal {
   margin-top: 40px;
 }
@@ -412,8 +468,10 @@ ul.phones > li {
   }
 }
 .img-content {
-  display: inline;
-  margin-left: 8px;
+  margin-bottom: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 /*Sart disputes in ViewPage */
 .disputes {
@@ -422,15 +480,6 @@ ul.phones > li {
 .disputes h3 {
   margin: 40px 0px;
 }
-
-/*Sart Payments in ViewPage */
-.payments {
-  margin-top: 40px;
-}
-.payments h3 {
-  margin: 40px 0px;
-}
-
 /* Dispute Page */
 .add-dispute {
   background-color: #ab5af5;
@@ -521,8 +570,8 @@ ul.phones > li {
   margin:30px 0px;
 
 }
-.add-to-dispute form > input,
-.add-to-dispute form > textarea{
+.add-to-dispute form  input,
+.add-to-dispute form textarea{
   margin-bottom: 10px;
 }
 .add-to-dispute form > textarea{
@@ -537,4 +586,125 @@ ul.phones > li {
 }
 .multifile-data input{
   height: 44px;
+}
+.add-new-file{
+  margin:50px 0px;
+}
+.add-new-file input[type="file"]{
+  margin: 20px 0px;
+}
+.dispute-files .img-content .myImg{
+  position: relative;
+}
+.dispute-files .delete-file,
+.files .delete-file{
+  background-color: #F00;
+  color: #FFF;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 12px;
+  margin-right: 10px;
+  
+}
+.disputes-control{
+  margin-top: 30px;
+}
+/* Edit dispute */
+
+.edit-dispute form{
+  margin-top: 40px;
+  text-align: right;
+  
+}
+.edit-dispute form input,
+.edit-dispute form textarea{
+  margin-bottom: 10px;
+}
+.edit-dispute form textarea{
+  resize: none;
+}
+
+/*Sart Payments in ViewPage */
+.pay-type{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+.pay-type a{
+  color : #FFF;
+  font-size:20px;
+}
+.pay-type > div{
+  padding: 30px;
+  width: 30%;
+  text-align:center;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.pay-type .pay-office{
+  background-color: #f66;
+}
+.pay-type .pay-dispute{
+  background-color: #35cdd5;
+}
+.pay-type .profit{
+  background-color: #6bdd6e;
+}
+.office-fees{
+  margin-top: 60px;
+}
+.fees-header{
+  text-align:center;
+}
+.fees-form{
+  max-width: 500px;
+}
+.fees-form > input{
+  height: 45px;
+  margin-bottom: 10px;
+}
+/* Profit Page */
+.static-date{
+  max-width: 600px;
+}
+.determine-date{
+  display: flex;
+  justify-content: space-between ;
+}
+.start-date,
+.end-date{
+  text-align:right;
+}
+.start-date input,
+.end-date input{
+  margin-top: 5px;
+}
+.get-profit{
+  margin-top: 20px;
+  height: 44px;
+}
+.statistics{
+  margin-top: 30px;
+}
+.total-profit{
+  text-align: left;
+}
+.total-profit .profit-amount{
+  font-size:35px;
+}
+/* Archive */
+.dispute-archive{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.dispute-archive > span{
+  margin-right: 10px;
 }

@@ -56,7 +56,7 @@
               <select id="select-client" name="client_id" placeholder="اختار العميل">
                   <option value="0" disabled selected>أختار العميل</option>
 <?php
-        $stmt = $connect->prepare("SELECT client_id,name FROM clients ORDER BY client_id DESC LIMIT 5");
+        $stmt = $connect->prepare("SELECT client_id,name FROM clients ORDER BY client_id DESC");
         $stmt->execute();
         $rows = $stmt->fetchAll();
 
@@ -74,7 +74,7 @@
                 <option value="5">مستأنف</option>
                 <option value="6">متسأنف ضده</option>
               </select>
-              <input type="text" name="dis_title" class="form-control" placeholder="عنوان القضيه" autocomplete="off" required>
+              <input type="text" name="dis_title" class="form-control" placeholder="موضوع القضية" autocomplete="off" required>
               <input type="text" name="dis_court" class="form-control" placeholder="محكمة" autocomplete="off" required>
               <input type="text" name="dis_district" class="form-control" placeholder="دائرة" autocomplete="off" required>
               <input type="text" name="dis_number" class="form-control" placeholder="رقم الدعوي" autocomplete="off">
@@ -91,7 +91,8 @@
                 <option value="6">متسأنف ضده</option>
               </select>
               <input type="text" name="en_lawyer" class="form-control" placeholder="محامي الخصم" autocomplete="off">
-              <input type="date" name="dis_date" class="form-control" class="date">
+              <input type="text" dir="rtl" name="dispute_date" placeholder="تاريخ" class="form-control date-picker-exchange datepicker" required>
+              <input type="hidden">
               <input type="number" name="dis_price" name="price" class="form-control" placeholder="الأتعاب" autocomplete="off">
               <!-- <input type="text" name="tags" id="input-tags" placeholder="التصنيف"> -->
               <input type="Submit" value="إضافه" class="btn-success form-control">
@@ -104,7 +105,7 @@
                 $court      =   $_POST['dis_court'];
                 $title      =   $_POST['dis_title'];
                 $district   =   $_POST['dis_district'];
-                $date       =   $_POST['dis_date']; 
+                $date       =   $_POST['prefix__dispute_date__suffix']; 
                 $c_id       =   $_POST['client_id'];
                 $c_status   =   $_POST['client_status'];
                 $e_name     =   $_POST['en_name'];
@@ -144,6 +145,10 @@
                         "z_price"       => $price,
                         "z_dis_status"  => 1
                     ));
+
+
+                    $msg_log = "تم إضافه القضية بنجاح";
+                    redirect($msg_log,"back",3);
                 }else{
                     foreach($ErrorsCatch as $erro){
                         echo "<div dir='rtl' class='text-center alert alert-danger mt-2 arabicFont'>".$error."</div>";
@@ -156,85 +161,66 @@
                 header("Location:dashboard.php");
             }
 
-        }elseif($action == "edit"){
-            $UserID = isset($_GET['UserID']) && is_numeric($_GET['UserID']) == TRUE ? $_GET['UserID'] : 0;
+        }elseif($action == "edit-dispute"){
+            $id = isset($_GET['dispute_id']) && is_numeric($_GET['dispute_id']) == TRUE ? $_GET['dispute_id'] : 0;
 
         
-            $stmt = $connect->prepare("SELECT * FROM users WHERE id = ? LIMIT 1");
-            $stmt->execute(array($UserID));
+            $stmt = $connect->prepare("SELECT * FROM disputes WHERE dispute_id = ? LIMIT 1");
+            $stmt->execute(array($id));
             $count = $stmt->rowCount();
             $row = $stmt->fetch();
             if($count > 0){ 
 
 ?>
-          <form action="?action=update" method="POST" style="direction:rtl" class="input-form">
-          <div class="form-card form-group col-sm-12 col-md-6 arabicFont" >
-              <span class="display-4 text-dark">تعديل البيانات</span>
+<form action="?action=update-dispute" method="POST" enctype="multipart/form-data" dir="rtl" class="arabicFont">
+          <div class="form-card form-group col-12 col-lg-6 input-form text-center">
+              <span class="display-5 text-dark">تعديل قضية</span>
               <hr style="text-dark">
-              <input type="hidden" name="usrid" value="<?php echo $row['id']?>">
-              <input type="text"  name="user" class="form-control"   value="<?php echo $row['user']?>" placeholder="إسم المستخدم" required>
-              <input type="hidden" name="oldpass" value="<?php echo $row['pass']?>">
-              <input type="password"  name="newpass" class="form-control" placeholder="كلمةالمرور">
-              <input type="text"  name="full" class="form-control"   value="<?php echo $row['name']?>"  placeholder="الإسم بالكامل" required>
-              <input type="Submit" value="تعديل" class="btn-primary form-control" required>
+              <input type="text" name="dis_title" class="form-control" value="<?php echo $row['title']?>" placeholder="موضوع القضية" autocomplete="off" required>
+              <input type="text" name="dis_court" class="form-control" value="<?php echo $row['court']?>" placeholder="محكمة" autocomplete="off" required>
+              <input type="text" name="dis_district" class="form-control" value="<?php echo $row['district']?>" placeholder="دائرة" autocomplete="off" required>
+              <input type="text" name="dis_number" class="form-control" value="<?php echo $row['ref_number']?>" placeholder="رقم الدعوي" autocomplete="off">
+              <input type="text" name="en_name" class="form-control" value="<?php echo $row['en_name']?>" placeholder="إسم الخصم" autocomplete="off">
+              <input type="text" name="en_address" class="form-control" value="<?php echo $row['en_address']?>" placeholder="عنوان الخصم" autocomplete="off">
+              <input type="text" name="en_lawyer" value="<?php echo $row['en_lawyer']?>" class="form-control" placeholder="محامي الخصم" autocomplete="off">
+              <input type="hidden" name="dispute_id" value="<?php echo $row['dispute_id']?>">
+              <input type="number" value="<?php echo $row['price']?>" name="dis_price" name="price" class="form-control" placeholder="الأتعاب" autocomplete="off">
+              <input type="Submit" value="إضافه" class="btn-success form-control">
         </div>
       </form>
 <?php
-            }
-        }elseif($action == "update"){
-            if($_SERVER['REQUEST_METHOD'] == "POST"){
-                $id     = $_POST['usrid'];
-                $user   = $_POST['user'];
-                $full   = $_POST['full'];
-                $pass = empty($_POST['newpass']) ? $_POST['oldpass'] : $_POST['newpass'];
-                $hashedpass = sha1($pass);
-                
-                $ErrorsCatch = [];
-      
-                // Validation Cathces
-                if(strlen($user) < 4){
-                    $ErrorsCatch[] = "إسم المستخدم يجب ان يكون اكبر من 4 أحرف";
-                  }
-                if(strlen($pass) < 5){
-                    $ErrorsCatch[] = "يرجي مراجعه كلمة المرور مره أخري";
-                }
-                if(strlen($full) < 7){
-                    $ErrorsCatch[] = "يرجي مراجعة الإسم مره أخري";
-                }  
-      
-                if(empty($ErrorsCatch)){
-                  $stmt = $connect->prepare("UPDATE users SET user = ? , name = ? , pass = ? WHERE id = ?");
-                  $stmt->execute(array($user,$full,$hashedpass,$id));
-        
-                  $msg_log = "تم التعديل بنجاح";
-                  redirect($msg_log,"back",3);
-                }else{
-                  foreach($ErrorsCatch as $error){
-                    echo "<div class='text-center alert alert-danger mt-2 arabicFont'>".$error."</div>";
-                  }
-                  $msg_log = "حدث خطأ اثناء التعديل";
-                  redirect($msg_log,"back",3);                  
-                }
-      
             }else{
-                // UPDATE NOT WITH POST REQUEST
-                $msg = "<div class='alert alert-danger col-sm-5 mr-auto ml-auto mt-3'>You don't have permission to access this page</div>";
-                redirectPage($msg,3,"members.php");
-            }
-        }elseif($action == "delete"){
-            $UserID = isset($_GET['UserID']) && is_numeric($_GET['UserID']) == TRUE ? $_GET['UserID'] : 0;
-            $check = checkItem("id","users",$UserID);
-            
-            if($check > 0){
-              $stmt = $connect->prepare("DELETE FROM users WHERE id = ?");
-              $stmt->execute(array($UserID));
-              $msg_log = "تم الحذف بنجاح";
-              redirect($msg_log,"back",3);
-            }else{
-                $msg_log = "حدث خطأ اثناء الحذف";
+                $msg_log = "القضيه غير متوفره في قاعدة البيانات";
                 redirect($msg_log,"back",3);
             }
-        }
+        }elseif($action == "update-dispute"){
+            if($_SERVER['REQUEST_METHOD'] == "POST"){
+                $id     = isset($_POST['dispute_id']) && is_numeric($_POST['dispute_id']) ? $_POST['dispute_id'] : 0;
+                $check = checkItem("dispute_id","disputes",$id);
+                if($check > 0){
+                    $number     =   $_POST['dis_number'];
+                    $court      =   $_POST['dis_court'];
+                    $title      =   $_POST['dis_title'];
+                    $district   =   $_POST['dis_district'];
+                    $e_name     =   $_POST['en_name'];
+                    $e_address  =   $_POST['en_address'];
+                    $e_lawyer   =   $_POST['en_lawyer'];
+                    $price      =   $_POST['dis_price'];
+                    
+                    $stmt = $connect->prepare("UPDATE disputes SET ref_number = ?, court = ?, title = ?, district = ?, en_name = ?, en_address = ?, en_lawyer = ?, price = ? WHERE dispute_id = ?");
+                    $stmt->execute(array($number,$court,$title,$district,$e_name,$e_address,$e_lawyer,$price,$id));
+                    if($stmt->rowCount() > 0){
+                        $msg_log = "تم التعديل بنجاح";
+                        redirect($msg_log,"back",3);
+                    }else{
+                        $msg_log = "لا يوجد تعديل جديد";
+                        redirect($msg_log,"back",3);
+                    }
+                }else{
+                    $msg_log = "القضيه غير متوفره في قاعدة البيانات";
+                    redirect($msg_log,"back",3);
+                }
+        }}
 ?>                    
 
                 </div>

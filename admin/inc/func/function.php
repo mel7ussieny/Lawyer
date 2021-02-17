@@ -33,4 +33,11 @@
         return $count;
       }
 
+    function getCount($col,$tbl){
+        global $connect;
+        $statment = $connect->prepare("SELECT COUNT($col) AS number FROM $tbl");
+        $statment->execute();
+        $row = $statment->fetch();
+        return $row['number'];
+    }
 ?>

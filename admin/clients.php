@@ -72,7 +72,7 @@
                 
                 $name   = filter_var($_POST['name'],FILTER_SANITIZE_STRING);
                 $address   = filter_var($_POST['address'],FILTER_SANITIZE_STRING);
-                $contract   = filter_var($_POST['contract'],FILTER_SANITIZE_NUMBER_INT);
+                $contract   = filter_var($_POST['contract'],FILTER_SANITIZE_STRING);
                 $ErrorsCatch = [];
 
                 $x = 0;
