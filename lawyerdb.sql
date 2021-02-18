@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2021 at 10:54 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Generation Time: Feb 18, 2021 at 01:14 PM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -82,10 +83,10 @@ CREATE TABLE `disputes` (
 --
 
 INSERT INTO `disputes` (`dispute_id`, `ref_number`, `court`, `title`, `district`, `date`, `dclient_id`, `client_type`, `en_name`, `en_address`, `en_lawyer`, `en_type`, `price`, `dis_status`) VALUES
-(1, '56985745', 'طنطا', 'ترخيص مباني', 'سيجر', '2021-02-18', 21, 2, 'احمد علي حسن', 'ش الجلاء', 'فريد الديب', 1, 30000, 1),
+(1, '56985745', 'طنطا', 'ترخيص مباني', 'سيجر', '2021-02-18', 21, 2, 'احمد علي حسن', 'ش الجلاء', 'فريد الديب', 1, 1000, 1),
 (2, '599857', 'طنطا', 'قتل', 'سيجر', '2021-02-26', 21, 3, 'احمد محسن فوزي', 'الجلاء', 'مصطفي لطقي', 4, 10000, 1),
-(3, '344لسنة 2019', 'اول طنطا', 'صحة توقيع', '4(السبت)', '2021-02-11', 27, 1, 'جمال احمد اسماعيل', 'ثانى طنطا', 'فريد الديب', 2, 100000, 1),
-(4, '20200 لس 2018', 'طنطا', 'سجر', 'الرابعه', '2021-02-23', 23, 4, 'محمود محمد حسيني', 'سيجر', 'حسام الشناوي', 3, 20000, 0);
+(3, '344لسنة 2019', 'اول طنطا', 'صحة توقيع', '4(السبت)', '2021-02-11', 27, 1, 'جمال احمد اسماعيل', 'ثانى طنطا', 'فريد الديب', 2, 100000, 0),
+(4, '20200 لس 2018', 'طنطا', 'سجر', 'الرابعه', '2021-02-23', 23, 4, 'محمود محمد حسيني', 'سيجر', 'حسام الشناوي', 3, 20000, 1);
 
 -- --------------------------------------------------------
 
@@ -145,6 +146,29 @@ INSERT INTO `identity` (`identity_id`, `name`, `type`, `date`, `client_id`) VALU
 (19, '8462137_photo-1524504388940-b1c1722653e1.png', 'image/png', '2021-02-10', 24),
 (20, '9245269_photo-1512663150964-d8f43c899f76.jpg', 'image/jpeg', '2021-02-13', 29),
 (21, '3572249_photo-1524504388940-b1c1722653e1.jpg', 'image/jpeg', '2021-02-13', 30);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notes`
+--
+
+CREATE TABLE `notes` (
+  `id` int(11) NOT NULL,
+  `note` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `dispute_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `notes`
+--
+
+INSERT INTO `notes` (`id`, `note`, `date`, `dispute_id`) VALUES
+(5, 'جلسة', '2021-02-17', 1),
+(6, 'دفع كهرباء', '2021-02-17', NULL),
+(7, 'دفع إجار', '2021-02-17', NULL),
+(8, 'جلسه', '2021-02-22', 2);
 
 -- --------------------------------------------------------
 
@@ -297,6 +321,13 @@ ALTER TABLE `identity`
   ADD KEY `id_client` (`client_id`);
 
 --
+-- Indexes for table `notes`
+--
+ALTER TABLE `notes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `dispute_note` (`dispute_id`);
+
+--
 -- Indexes for table `payments`
 --
 ALTER TABLE `payments`
@@ -353,6 +384,12 @@ ALTER TABLE `identity`
   MODIFY `identity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
+-- AUTO_INCREMENT for table `notes`
+--
+ALTER TABLE `notes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
@@ -397,6 +434,12 @@ ALTER TABLE `dispute_files`
 --
 ALTER TABLE `identity`
   ADD CONSTRAINT `id_client` FOREIGN KEY (`client_id`) REFERENCES `clients` (`client_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `notes`
+--
+ALTER TABLE `notes`
+  ADD CONSTRAINT `dispute_note` FOREIGN KEY (`dispute_id`) REFERENCES `disputes` (`dispute_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `payments`

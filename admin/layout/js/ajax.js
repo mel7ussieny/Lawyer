@@ -123,4 +123,36 @@ $(document).ready(function(){
             }
         }
     })
+
+    // Send Request To Get Notifications
+    $('.get-notifications').on("click",function(){
+        $(".statistics table tbody tr").remove();
+        if($('input[name="prefix__date-start__suffix"]').val().length > 0 && $('input[name="prefix__date-start__suffix"]').val().length > 0){
+            let notiType = $('.show-type').val();
+            let d_start = $('input[name="prefix__date-start__suffix"]').val();
+            let d_end   = $('input[name="prefix__date-end__suffix"]').val();
+    
+            let request = new XMLHttpRequest();
+            request.open("GET","search.php?required=notifications&d-start="+d_start+"&d-end="+d_end+"&type="+notiType);
+            request.send();
+            request.onload = function(){
+                let arr = JSON.parse(request.responseText);
+                console.log(arr);
+                arr.forEach(element => {
+                    let type = (element["dispute_id"] == null) ? "شعل إداري" : "جلسات";
+                    let ref = (element["dispute_id"] != null) ? `trace-dispute.php?action=view&dispute_id=${element["dispute_id"]}` : "#";
+                    let title = (element["title"] == null) ? "" : element["title"];
+
+                    let html = `<tr>
+                        <td>${element["date"]}</td>
+                        <td>${type}</td>
+                        <td>${element["note"]}</td>
+                        <td><a href="${ref}">${title}</a></td>
+                    </tr>`;
+                    $(".statistics table tbody").append(html);
+                })
+            }
+        }
+
+    })
 })

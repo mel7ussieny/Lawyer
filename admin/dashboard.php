@@ -35,7 +35,7 @@
                                             <i class="fas fa-recycle"></i>
                                             <div class="include">
                                                 <h3>الجلسات</h3>
-                                                <a href="clients.php"><span><?php echo getCount("id","updates")?></span></a>
+                                                <a href="trace-dispute.php"><span><?php echo getCount("id","updates")?></span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -48,7 +48,37 @@
                                             <span>الإشعارات (الجلسات)</span>
                                         </div>
                                         <div class="noti-content">
-                                            
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <td scope="col" width="5%">#</td>
+                                                    <td scope="col" width="10%">تاريخ</td>
+                                                    <td scope="col" width="70%">ملحوظة</td>
+                                                    <td scope="col" width="15%">القضية</td>
+                                                </tr>
+                                                <?php
+                                                    $stmt = $connect->prepare("SELECT notes.*,disputes.title,disputes.dispute_id FROM notes
+                                                    INNER JOIN disputes
+                                                    ON
+                                                    disputes.dispute_id = notes.dispute_id  
+                                                    WHERE notes.dispute_id IS NOT NULL AND notes.date = ?");
+                                                    $stmt->execute(array(date("Y-m-d")));
+                                                    $rows = $stmt->fetchAll();
+                                                ?>
+                                                <tbody>
+                                                    <?php
+                                                        foreach($rows as $key => $value){
+                                                    ?>
+                                                    <tr>
+                                                        <th scope="row"><?php echo $key + 1 ?></th>
+                                                        <td><?php echo $rows[$key]["date"]?></td>
+                                                        <td><?php echo $rows[$key]["note"]?></td>
+                                                        <td><a href="trace-dispute.php?action=view&dispute_id=<?php echo $rows[$key]['dispute_id']?>"><?php echo $rows[$key]["title"]?></a></td>
+                                                    </tr>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +91,32 @@
                                             <span>الإشعارات (شغل إداري)</span>
                                         </div>
                                         <div class="noti-content">
-                                            
+                                        <table class="table table-striped">
+                                                <tr>
+                                                    <td scope="col" width="5%">#</td>
+                                                    <td scope="col" width="10%">تاريخ</td>
+                                                    <td scope="col" width="85%">ملحوظة</td>
+                                                </tr>
+                                                <?php
+                                                    $stmt = $connect->prepare("SELECT * FROM notes 
+                                                    WHERE dispute_id IS NULL AND notes.date = ?");
+                                                    $stmt->execute(array(date("Y-m-d")));
+                                                    $rows = $stmt->fetchAll();
+                                                ?>
+                                                <tbody>
+                                                    <?php
+                                                        foreach($rows as $key => $value){
+                                                    ?>
+                                                    <tr>
+                                                        <th scope="row"><?php echo $key + 1 ?></th>
+                                                        <td><?php echo $rows[$key]["date"]?></td>
+                                                        <td><?php echo $rows[$key]["note"]?></td>
+                                                    </tr>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -80,6 +135,7 @@
     }else{
         $title = 'حدث خطأ';
         include 'init.php';
+        header("Location:login.php");
 
     }
     include $tmpl . "footer.php";

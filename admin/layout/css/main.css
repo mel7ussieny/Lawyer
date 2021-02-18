@@ -91,6 +91,23 @@ input#input-tags-selectized {
 .menu-item {
   display: none;
 }
+.list-noti {
+  position: relative;
+}
+.noti-numbers {
+  position: absolute;
+  display: flex;
+  background-color: #ab0000;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  top: 3px;
+  font-size: 10px;
+  right: 5px;
+  user-select: none;
+}
 /* Background Pages */
 div.login-bg {
   width: 100%;
@@ -106,22 +123,23 @@ div.dashboard-bg {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-.notifications{
+.notifications {
   padding: 10px;
 }
-.noti-header{
+.noti-header {
   padding: 15px;
   display: flex;
-  align-items:center;
+  align-items: center;
 }
-.noti-header i{
+.noti-header i {
   margin-left: 10px;
   font-size: 25px;
 }
-.notifications .noti-header{
+.notifications .noti-header {
   background-color: #292928;
-  color: #FFF;
+  color: #fff;
 }
+
 /* Login Page */
 .header-img {
   display: flex;
@@ -169,10 +187,10 @@ div.dashboard-bg {
 }
 
 /* Dashboard */
-.shortcuts{
+.shortcuts {
   margin-top: 50px;
 }
-.shortcuts .dash-content{
+.shortcuts .dash-content {
   height: 200px;
   margin-bottom: 20px;
   border-radius: 20px;
@@ -182,25 +200,25 @@ div.dashboard-bg {
   justify-content: space-around;
   color: #414141;
 }
-.dash-content .include{
-  text-align:center;
+.dash-content .include {
+  text-align: center;
 }
-.dash-content .include span{
-  font-size:40px;
+.dash-content .include span {
+  font-size: 40px;
 }
-.dash-content i{
+.dash-content i {
   font-size: 60px;
 }
-.content-disputes{
+.content-disputes {
   background-color: #ff4646;
 }
-.content-clients{
+.content-clients {
   background-color: #ffb396;
 }
-.content-updates{
+.content-updates {
   background-color: #ff8585;
 }
-.include a span{
+.include a span {
   color: #414141;
 }
 /*Members Page*/
@@ -319,7 +337,7 @@ div.dashboard-bg {
 }
 
 /* View Page */
-.user-control{
+.user-control {
   margin-top: 10px;
   text-align: right;
 }
@@ -357,16 +375,15 @@ ul.phones > li {
   padding: 20px;
   background-color: #eee;
 }
-.dispute-header{
+.dispute-header {
   position: relative;
   background-color: #454545;
   padding: 10px;
   margin-bottom: 10px;
-
 }
-.dispute .show-dispute{
+.dispute .show-dispute {
   position: absolute;
-  color: #FFF;
+  color: #fff;
   left: 10px;
   font-size: 26px;
   bottom: 10px;
@@ -374,11 +391,11 @@ ul.phones > li {
 .dispute .content {
   display: none;
 }
-.dispute .title{
+.dispute .title {
   /* display: block; */
   margin-bottom: 5px;
   cursor: pointer;
-  color: #FFF;
+  color: #fff;
 }
 /* Modal Picture */
 /* Style the Image Used to Trigger the Modal */
@@ -497,25 +514,25 @@ ul.phones > li {
 }
 
 /* Trace dispute Page */
-.advanced{
+.advanced {
   direction: rtl;
 }
-.search-types ul{
-  list-style:none;
+.search-types ul {
+  list-style: none;
   padding: 0px;
 }
 .search-types ul li {
-  display:flex;
+  display: flex;
   align-items: center;
 }
-.search-types ul li span{
+.search-types ul li span {
   width: 100px !important;
 }
-.search-advanced .advanced i{
+.search-advanced .advanced i {
   font-size: 20px;
   color: #5a5a5a;
 }
-.search-advanced .search-types{
+.search-advanced .search-types {
   display: none;
 }
 .disputes-view {
@@ -541,65 +558,64 @@ ul.phones > li {
   background-color: #eee;
   padding: 15px;
 }
-.disputes-view .content{
+.disputes-view .content {
   display: none;
 }
 
 /* View Dispute */
-.dispute-info ul{
+.dispute-info ul {
   list-style: none;
   padding: 0px;
 }
-.dispute-info h3{
-  margin:30px 0px;
+.dispute-info h3 {
+  margin: 30px 0px;
 }
-.dispute-info ul li{
+.dispute-info ul li {
   padding: 10px;
   background-color: #e6eaf0;
   margin-bottom: 15px;
 }
-.dispute-info ul li span.dis-info{
+.dispute-info ul li span.dis-info {
   float: right;
   width: 100px;
   font-size: 14px;
 }
-.dispute-trace h3{
-  margin:30px 0px;
+.dispute-trace h3 {
+  margin: 30px 0px;
 }
-.dispute-news h3{
-  margin:30px 0px;
-
+.dispute-news h3 {
+  margin: 30px 0px;
 }
-.add-to-dispute form  input,
-.add-to-dispute form textarea{
+.add-to-dispute form input,
+.add-to-dispute form textarea {
   margin-bottom: 10px;
 }
-.add-to-dispute form > textarea{
+.add-to-dispute form > textarea {
   height: 100px;
   resize: none;
 }
-.add-to-dispute form > input{
+.add-to-dispute form > input {
   height: 50px;
 }
-.multifile-data{
+.multifile-data {
   margin-bottom: 10px;
 }
-.multifile-data input{
+.multifile-data input {
   height: 44px;
 }
-.add-new-file{
-  margin:50px 0px;
+.add-new-file {
+  margin: 50px 0px;
 }
-.add-new-file input[type="file"]{
+.add-new-file input[type="file"] {
   margin: 20px 0px;
 }
-.dispute-files .img-content .myImg{
+.dispute-files .img-content .myImg {
   position: relative;
 }
 .dispute-files .delete-file,
-.files .delete-file{
-  background-color: #F00;
-  color: #FFF;
+.files .delete-file {
+  background-color: #f00;
+  color: #fff;
   width: 15px;
   height: 15px;
   display: flex;
@@ -608,103 +624,130 @@ ul.phones > li {
   border-radius: 50%;
   font-size: 12px;
   margin-right: 10px;
-  
 }
-.disputes-control{
+.disputes-control {
   margin-top: 30px;
 }
 /* Edit dispute */
 
-.edit-dispute form{
+.edit-dispute form {
   margin-top: 40px;
   text-align: right;
-  
 }
 .edit-dispute form input,
-.edit-dispute form textarea{
+.edit-dispute form textarea {
   margin-bottom: 10px;
 }
-.edit-dispute form textarea{
+.edit-dispute form textarea {
   resize: none;
 }
 
 /*Sart Payments in ViewPage */
-.pay-type{
+.pay-type {
   display: flex;
   justify-content: space-around;
   margin-top: 50px;
 }
-.pay-type a{
-  color : #FFF;
-  font-size:20px;
+.pay-type a {
+  color: #fff;
+  font-size: 20px;
 }
-.pay-type > div{
+.pay-type > div {
   padding: 30px;
   width: 30%;
-  text-align:center;
+  text-align: center;
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
-.pay-type .pay-office{
+.pay-type .pay-office {
   background-color: #f66;
 }
-.pay-type .pay-dispute{
+.pay-type .pay-dispute {
   background-color: #35cdd5;
 }
-.pay-type .profit{
+.pay-type .profit {
   background-color: #6bdd6e;
 }
-.office-fees{
+.office-fees {
   margin-top: 60px;
 }
-.fees-header{
-  text-align:center;
+.fees-header {
+  text-align: center;
 }
-.fees-form{
+.fees-form {
   max-width: 500px;
 }
-.fees-form > input{
+.fees-form > input {
   height: 45px;
   margin-bottom: 10px;
 }
 /* Profit Page */
-.static-date{
+.static-date {
   max-width: 600px;
 }
-.determine-date{
+.determine-date {
   display: flex;
-  justify-content: space-between ;
+  justify-content: space-between;
 }
 .start-date,
-.end-date{
-  text-align:right;
+.end-date {
+  text-align: right;
 }
 .start-date input,
-.end-date input{
+.end-date input {
   margin-top: 5px;
 }
-.get-profit{
+.get-profit {
   margin-top: 20px;
   height: 44px;
 }
-.statistics{
+.statistics {
   margin-top: 30px;
 }
-.total-profit{
+.total-profit {
   text-align: left;
 }
-.total-profit .profit-amount{
-  font-size:35px;
+.total-profit .profit-amount {
+  font-size: 35px;
 }
 /* Archive */
-.dispute-archive{
-  display:flex;
+.dispute-archive {
+  display: flex;
   align-items: center;
   justify-content: space-around;
 }
-.dispute-archive > span{
+.dispute-archive > span {
   margin-right: 10px;
+}
+
+/* Notification */
+.notification-page {
+  margin-top: 50px;
+}
+.notification-page .select-type {
+  max-width: 420px;
+}
+.notification-page form {
+  max-width: 420px;
+}
+.notification-page .selectize-input {
+  height: 42px !important;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.noti-type {
+  display: none;
+}
+.noti-type > input {
+  height: 46px;
+  margin-bottom: 10px;
+}
+.all-notifications {
+  margin-top: 80px;
+}
+.show-type {
+  margin-top: 10px;
 }

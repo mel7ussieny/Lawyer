@@ -286,6 +286,35 @@
                         <!-- Start Payments -->
                         <div class="dispute-payments">
                                 <h3>المدفوعات</h3>
+                                <table class="table table-striped">
+                                                <tr>
+                                                    <td scope="col" width="5%">#</td>
+                                                    <td scope="col" width="10%">تاريخ</td>
+                                                    <td scope="col" width="10%">النوع</td>
+                                                    <td scope="col" width="60%">ملحوظة</td>
+                                                    <td scope="col" width="15%">المدفوع</td>
+                                                </tr>
+                                                <?php
+                                                    $stmt = $connect->prepare("SELECT * FROM payments WHERE dispute_id = ?");
+                                                    $stmt->execute(array($dispute_id));
+                                                    $rows = $stmt->fetchAll();
+                                                ?>
+                                                <tbody>
+                                                    <?php
+                                                        foreach($rows as $key => $value){
+                                                    ?>
+                                                    <tr>
+                                                        <th scope="row"><?php echo $key + 1 ?></th>
+                                                        <td><?php echo $rows[$key]["date"]?></td>
+                                                        <td><?php echo ($rows[$key]["type"] == 1 ? "مصروف" : "أتعاب" )?></td>
+                                                        <td><?php echo $rows[$key]["pay_for"]?></td>
+                                                        <td><?php echo $rows[$key]["amount"]?></td>
+                                                    </tr>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                </tbody>
+                                            </table>
                                 
                         </div>
                         <!-- End Payments -->
@@ -488,7 +517,8 @@
         }
         include $tmpl . "footer.php";
     }else{
-        $title = 
+        $title = 'حدث خطأ';
+        include 'init.php';
         header("Location:login.php");
     }
 

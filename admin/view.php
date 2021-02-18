@@ -183,11 +183,6 @@
                     </div>
                     <!-- End Payments -->
 
-                    <!-- Start Payments -->
-                    <div class="payments">
-                        <h3>المدفوعات</h3>
-                    </div>
-                    <!-- End Payments -->
                 </div>
             </div>
                     </div>

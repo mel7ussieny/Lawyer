@@ -89,6 +89,15 @@ $(".modal span").on("click",function(){
     })
 
 
+    // Select in notification page
+    $('.select-type').on("change",function(){
+        $('.noti-type').css("display","none");
+        if($(this).val() == 1){
+            $('.sessions').show();
+        }else if($(this).val() == 2){
+            $('.administrative').show();
+        }
+    })
 
     // Data Picker
     $('.date-picker-exchange').pickadate({

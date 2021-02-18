@@ -30,7 +30,7 @@ if(isset($_SESSION['id']) && isset($_GET['required']) && $_GET['required'] == "g
         $stmt = $connect->prepare("SELECT payments.*,disputes.title FROM payments LEFT JOIN disputes
         ON 
         payments.dispute_id = disputes.dispute_id 
-        WHERE (payments.date BETWEEN '".$start." 0:00:00' AND '".$end." 0:00:00')");
+        WHERE (payments.date BETWEEN '".$start." 0:00:00' AND '".$end." 0:00:00') ORDER BY payments.date DESC");
         $stmt->execute();
         $rows = $stmt->fetchAll();
 
@@ -44,6 +44,32 @@ if(isset($_SESSION['id']) && isset($_GET['required']) && $_GET['required'] == "g
         }
         $rows[0]["profit"] = ($sum > 0 ) ? "+$sum" : $sum;
         echo json_encode($rows);
+    }
+}
+if(isset($_SESSION['id']) && isset($_GET['required']) && $_GET['required'] == "notifications"){
+    include 'connect.php';
+    if(isset($_GET['d-start']) && isset($_GET['d-end'])){
+        // echo "YES";
+        $start = $_GET['d-start'];
+        $end = $_GET['d-end'];
+        $type = $_GET['type'];
+        
+        if($type == 2){
+            $type = "notes.dispute_id IS NOT NULL";
+        }elseif($type == 3){
+            $type = "notes.dispute_id IS NULL";
+        }
+
+
+        $stmt = $connect->prepare("SELECT notes.*,disputes.title,disputes.dispute_id FROM notes
+        LEFT JOIN disputes 
+        ON
+        disputes.dispute_id = notes.dispute_id
+        WHERE $type AND (notes.date BETWEEN '".$start." 0:00:00' AND '".$end." 0:00:00') ORDER BY notes.date DESC ");
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
+        echo json_encode($rows);
+        // echo $stmt->queryString;
     }
 }
 

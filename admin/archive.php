@@ -72,6 +72,7 @@
     }else{
         $title = 'حدث خطأ';
         include 'init.php';
+        header("Location:login.php");
 
     }
     include $tmpl . "footer.php";
